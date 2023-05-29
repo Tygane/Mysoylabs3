@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block navbar-content %}
+ <i class="text-warning far fa-hospital"></i>&nbsp;&nbsp; MYSOY LabsManagement
+ <a style="text-decoration: solid" href="{% url 'home' %}"><i class="text-warning far fa-hospital"></i>&nbsp;&nbsp; Laboratoire</a> &nbsp;&nbsp;
+ <a style="text-decoration: solid" href="{% url 'persoHome' %}"><i class="text-warning far fa-user"></i>&nbsp;&nbsp; Personnels </a> &nbsp;&nbsp;
+ <a style="text-decoration: solid" href="{% url 'patHome' %}"><i class="text-warning fas fa-user-injured"></i>&nbsp;&nbsp; Patients </a>
+{% endblock navbar-content %}
+ 
+{% block content %}
+<body >
+    <h3 class="text-center mt-5">Welcome to your LabsManagement Web Application</h3>
+</body>
+
+{% endblock content %}

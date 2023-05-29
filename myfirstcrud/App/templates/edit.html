@@ -1,0 +1,48 @@
+{% extends 'add.html' %}
+
+{% block title %} Modifer un Laboratoire {% endblock title %}
+{% block navbar-content %}
+<i class="text-warning fas fa-edit"></i>&nbsp;&nbsp; Modifer un Laboratoire
+{% endblock navbar-content %}
+
+{% block card-color %} border-dark bg-warning {% endblock card-color %}
+{% block card-title %} <strong>Laboratoire : </strong> <span>{{labo.nom}}</span>{% endblock card-title %}
+
+{% block action %} action="/edit_Labo"  {% endblock action %} 
+
+{% block btn-action %} <i class="fas fa-server"></i>&nbsp;&nbsp; Sauvgarder {% endblock btn-action %}
+ <!--Inputs -->
+ {% block value-id %}
+    <div class="input-group mb-3">
+       <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fas fa-key"></i></span>
+       <input type="text" class="form-control" name="id" value="{{ labo.id }}" readonly >
+    </div>
+ {% endblock value-id %}
+   
+ {% block value-nom %} value="{{ labo.nom }}" {% endblock value-nom %}
+
+ {% block value-address %} value="{{labo.address}}" {% endblock value-address %}
+
+ {% block value-ville %} value="{{labo.ville}}" {% endblock value-ville %}
+
+ {% block value-codepostal %} value="{{labo.codepostal}}" {% endblock value-codepostal %}
+
+ {% block value-employeeMax %} value="{{labo.employeeMax}}" {% endblock value-employeeMax %}
+
+ {% block value-tel %} value="{{labo.tel}}" {% endblock value-tel %}
+
+ {% block value-email %} value="{{labo.email}}" {% endblock value-email %}
+
+ {% block option-domaine %} 
+ 
+ <option style="background-color: #d3d3d3; color: #111;" value="{{ labo.domaine }}" hidden> {{ labo.domaine }}</option>
+ 
+ {% endblock option-domaine %}
+
+ {% block value-dateCreation %} value="{{formatted_date}}" {% endblock value-dateCreation %}
+
+ {% block option-responsable %} 
+ 
+ <option style="background-color: #d3d3d3; color: #111;" value="{{ labo.responsable.id }}" hidden> {{ labo.responsable }}</option>
+ 
+ {% endblock option-responsable %}

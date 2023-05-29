@@ -1,0 +1,51 @@
+{% extends 'addPerso.html' %}
+
+{% block title %} Modifer un Personnel {% endblock title %}
+{% block navbar-content %}
+<i class="text-warning fas fa-edit"></i>&nbsp;&nbsp; Modifer un Personnel
+{% endblock navbar-content %}
+
+{% block card-color %} border-dark bg-warning {% endblock card-color %}
+{% block card-title %} <strong>Personnel : </strong> <span>{{perso.nom}}</span>{% endblock card-title %}
+
+{% block action %} action="/edit_Perso"  {% endblock action %} 
+
+{% block btn-action %} <i class="fas fa-server"></i>&nbsp;&nbsp; Sauvgarder {% endblock btn-action %}
+ <!--Inputs -->
+ {% block value-id %}
+    <div class="input-group mb-3">
+       <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fas fa-key"></i></span>
+       <input type="text" class="form-control" name="id" value="{{ perso.id }}" readonly >
+    </div>
+ {% endblock value-id %}
+   
+ {% block value-nom %} value="{{ perso.nom }}" {% endblock value-nom %}
+
+ {% block value-address %} value="{{perso.address}}" {% endblock value-address %}
+
+ {% block value-ville %} value="{{perso.ville}}" {% endblock value-ville %}
+
+ {% block value-codepostal %} value="{{perso.codepostal}}" {% endblock value-codepostal %}
+
+ {% block value-tel %} value="{{perso.tel}}" {% endblock value-tel %}
+
+ {% block value-email %} value="{{perso.email}}" {% endblock value-email %}
+
+ {% block value-dateEmb %} value="{{formatted_date}}" {% endblock value-dateEmb %}
+
+ {% block value-salaire %} value="{{perso.salaire}}" {% endblock value-salaire %}
+
+ {% block option-fonction %} 
+ 
+ <option style="background-color: #d3d3d3; color: #111;" value="{{ perso.fonction }}" hidden> {{ perso.fonction }}</option>
+ 
+ {% endblock option-fonction %}
+
+ {% block option-laboratoire %} 
+ <option style="background-color: #d3d3d3; color: #111;" value="{% if perso.laboratoire %}{{ perso.laboratoire.id }}{% else %}-1{% endif %}" hidden>
+    {% if perso.laboratoire %}{{ perso.laboratoire }}{% else %}Aucun{% endif %}
+ </option>
+ {% endblock option-laboratoire %}
+
+
+ 

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+<title>{% block title %} Ajouter un Patient {% endblock title %}</title>
+{% block navbar-content %}
+<i class="text-warning fas fa-plus"></i>&nbsp;&nbsp; Ajouter un Patient
+{% endblock navbar-content %}
+ 
+{% block content %} 
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+           <div class="card card-body mt-5 {% block card-color %} border-dark text-light bg-secondary {% endblock card-color %}">
+             <span class="text-center">{% block card-title %} remplissez les informations du Patient ci-dessous {% endblock card-title %}</span></span>
+           </div>
+           <div class="overflow-auto" style="max-height: 70vh;">
+           <form {% block action %} action="/add_Pat" {% endblock action %} method="POST" enctype="multipart/form-data" autocomplete="off" class="card p-3 border-dark mt-3"> 
+             {% csrf_token %}
+
+             {% block value-id %} {% endblock value-id %}
+             <div class="input-group mb-3">
+                <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fas fa-user-injured"></i> </span>
+                <input type="text" class="form-control" name="nom" maxlength="40" placeholder="Patient" required {% block value-nom %} {% endblock value-nom %}>
+             </div>
+
+             <div class="input-group mb-3">
+                <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fas fa-map-marker"></i> </span>
+                <input type="text" class="form-control" name="address" maxlength="40" placeholder="Address" required {% block value-address %} {% endblock value-address %}>
+             </div>
+             
+             <div class="input-group mb-3">
+                <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fa fa-city"></i> </span>
+                <input type="text" class="form-control" name="ville" maxlength="20" placeholder="Ville" required {% block value-ville %} {% endblock value-ville %}>
+             </div>
+
+             <div class="input-group mb-3">
+                <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fa fa-code"></i> </span>
+                <input type="text" class="form-control" name="codepostal" maxlength="40" placeholder="Code postal" required {% block value-codepostal %} {% endblock value-codepostal %}>
+             </div>
+
+             <div class="input-group mb-3">
+               <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fa fa-phone"></i> </span>
+               <input type="text" class="form-control" name="tel" maxlength="13" placeholder="Tel" required {% block value-tel %} {% endblock value-tel %}>
+            </div>
+
+            <div class="input-group mb-3">
+               <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fa fa-envelope"></i> </span>
+               <input type="text" class="form-control" name="email" maxlength="40" placeholder="Email" required {% block value-email %} {% endblock value-email %}>
+            </div>
+
+            <div class='row'>&nbsp;&nbsp;  Date d'admission</div><br>
+            <div class="input-group mb-3">
+               
+               <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="far fa-calendar"></i> </span>
+               <input type="date" class="form-control" name="dateAdm" maxlength="40" placeholder="Date d'addmission" required  {% block value-dateAdm %} {% endblock value-dateAdm %}>
+            </div>
+
+            <div class='row'>&nbsp;&nbsp;  Date de Naissance</div><br>
+            <div class="input-group mb-3">
+               <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="far fa-calendar"></i> </span>
+               <input type="date" class="form-control" name="dateNai" maxlength="40" placeholder="Date de Naissance" required  {% block value-dateNai %} {% endblock value-dateNai %}>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="fas fa-venus-mars"></i> </span>
+                <select class="form-select" name="sex" maxlength="40" placeholder="Sex" {% block value-sex %} {% endblock value-sex %}>
+                      {% block option-sex %} 
+                      
+                      {% endblock option-sex %} 
+                      <option value="Masculin">Masculin</option>
+                      <option value="Feminin">Feminin</option>
+                </select>
+             </div> 
+
+            <div class="input-group mb-3">
+               <span class="side-laber btn border-secondary bg-light" style="width: 50px;"><i class="far fa-hospital"></i> </span>
+               <select class="form-select" name="laboratoire" maxlength="40" placeholder="Laboratoire" {% block value-laboratoire %} {% endblock value-laboratoire %}>
+                     {% block option-laboratoire %} 
+                       <option value= '-1' hidden> sélectionner un laboratoire </option>
+                     {% endblock option-laboratoire %} 
+                     {% for labo in Labos %}
+                       <option value="{{ labo.id }}">{{labo.nom}}</option>
+                     {% endfor %}
+               </select>
+            </div>
+
+             <div class="mt-4" style="width : 100%">
+                  <button type="submit" class="btn btn-secondary mb-3">
+                      {% block btn-action %}
+                      <i class="fas fa-plus"></i>&nbsp;&nbsp; Ajouter
+                      {% endblock btn-action %}
+                 </button> 
+                  <a href="{% url 'patHome' %}" class="btn btn-outline-dark mb-3 ms-2" style="width : 50px" tilte ="retourner">
+                     <i class="fas fa-chevron-left"></i>
+                  </a>
+                  <button type="reset" class="btn btn-outline-dark mb-3 ms-2" style="width : 50px; height: 37.8px;" tilte ="réinitialiser">
+                      <i class="fas fa-sync-alt"></i>&nbsp;&nbsp;
+                  </button>
+             </div>
+           </form>
+         </div>
+        </div>
+    </div>
+  </div>
+{% endblock content %} 
+

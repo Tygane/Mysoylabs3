@@ -1,0 +1,58 @@
+ {% extends 'base.html' %}
+ 
+ {% block navbar-content %}
+ 
+ <i class="text-warning far fa-hospital"></i>&nbsp;&nbsp; Laboratoire
+ <a style="text-decoration: solid" href="{% url 'persoHome' %}"><i class="text-warning far fa-user"></i>&nbsp;&nbsp; Personnels </a>&nbsp;&nbsp;
+ <a style="text-decoration: solid" href="{% url 'patHome' %}"><i class="text-warning fas fa-user-injured"></i>&nbsp;&nbsp; Patients </a>
+ <a style="text-decoration: solid; margin-left: 1400px;" href="{% url 'accueil' %}"><i class="text-warning fas fa-home"></i>&nbsp;&nbsp; Accueil </a>
+ {% endblock navbar-content %}
+ 
+ {% block content %} 
+ <div class="container">
+   <br><br>
+   <a href="{% url 'add_Labo' %}" class="btn btn-outline-secondary btn-sm mb-5"><i class="fas fa-plus">&nbsp;&nbsp; Ajouter un Laboratoire</i></a>
+   <table class="table table-striped table-bordered table-hover w-100" style="text-align: center; font-size: 15px;" id ="myTable">
+    <thead class="table-danger">
+        <tr>
+            <th style="width: 20%;">Laboratoire</th>
+            <th style="width: 25%;">Adresse</th>
+            <th style="width: 10%;">Codepostal</th>
+            <th style="width: 10%;">Ville</th>
+            <th style="width: 10%;">Nombre d'employé</th>
+            <th style="width: 10%;">Date de Creation</th>
+            <th style="width: 10%;">Tel</th>
+            <th style="width: 10%;">Email</th>
+            <th style="width: 10%;">Domaine d'Activité</th>
+            <th style="width: 10%;">Responsable</th>
+            <th style="width: 15%;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for labo in Labos %}
+        <tr>
+            <td>{{ labo.nom }}</td>
+            <td>{{ labo.address }}</td>
+            <td>{{ labo.codepostal }}</td>
+            <td>{{ labo.ville }}</td>
+            <td>{{ labo.employeeMax }}</td>
+            <td>{{ labo.dateCreation}}</td>
+            <td>{{ labo.tel }}</td>
+            <td>{{ labo.email}}</td>
+            <td>{{ labo.domaine}}</td>
+            <td>{{ labo.responsable.nom }}</td>
+            <td>
+                <a href="/labo/{{ labo.id }}" class="btn btn-warning" title="Modifier Laboratoire">
+                    <i class="fas fa-pen"></i>
+                </a>
+                <a href="/delete_Labo/{{ labo.id }}" class="btn btn-danger" title="Supprimer Laboratoire">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+ </div>
+ {% endblock content %}
